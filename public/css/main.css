@@ -1,0 +1,14 @@
+.wrapper {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.searchbarcss{
+	width: 300px;
+	display:block;
+}
+
+.logout {
+	float:right;
+}
+
