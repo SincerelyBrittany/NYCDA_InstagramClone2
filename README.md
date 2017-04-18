@@ -8,6 +8,7 @@ This is an example
 
 ## API/ROUTES DOCUMENTATION
 This is were the documentation for the api and the list for the middleware that will be utilized in this application.
+Added routes for retrieval of object that contains information to post on the main instagram clone page. The variable is called "cardInfo". and the route is "/" .
 
 
 ## DB/SCHEMA DOCUMENTATION
