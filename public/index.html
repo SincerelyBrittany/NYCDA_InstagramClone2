@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/skeleton.css">
 <link rel="stylesheet" href="css/main.css">
-<title> Instagram </title>
+<title> Instagram Log In </title>
 
 </head>
 
@@ -16,8 +16,11 @@
 <nav> <div class="ui menu">
   <div class="header item">
   </div>
-  <a class="item">
+  <div class="item">
     Instagram
+  </div>
+  <a class="item Sign Up" href="signup.html">
+    Sign Up
   </a>
   <a class="item logout">
     Log Out
@@ -28,47 +31,56 @@
 <div class="wrapper">
   <div class="ui right aligned category search searchbarcss">
   <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Discover Other Users">
+    <input class="prompt js-discover-input js-discover-input-login js-all-input" type="text" placeholder="Discover Other Users">
+     <!-- This is where the discover search bar is -->
     <i class="search icon"></i>
   </div>
   <div class="results"></div>
 </div>
 </br>
+<div class="wrapper">
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
 
 
-<div class="ui card">
-  <div class="content">
-    <div class="right floated meta">14h</div>
-    <img class="ui avatar image" src="https://www.themarysue.com/wp-content/uploads/2015/12/avatar.jpeg" alt="Smiley face">
-        <span class="username">Username Here</span>
 
+    
+    <form class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input class= "js-email-input js-email-input-login js-all-input" type="text" name="email" placeholder="E-mail address">
+            <!-- This is where the e-mail input is -->
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input class="js-password-input js-password-input-login js-all-input" type="password" name="password" placeholder="Password">
+            <!-- This is where the password input is -->
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button js-login-button ">Login</button>
+      </div>
 
-    <div class= "uploadedinstagramphoto">
-    <img class="uploadedphoto" src="https://www.themarysue.com/wp-content/uploads/2015/12/avatar.jpeg" alt="Smiley face" height="280" width="250">
-    <div>
+      <div class="ui error message"></div>
 
-    <span class="username">Username Here</span>
-    <div class="PhotoDescription"> Photo Descripttion</div>
-  </div>
-  </div>
-  <div class="content">
-    <span class="right floated">
-      <button> <i class="heart outline like icon"></i></button>
-      17 likes
-    </span>
-    <i class="comment icon"></i>
-    3 comments
-  </div>
-  <div class="extra content">
-    <div class="ui large transparent left icon input">
-      <i class="heart outline icon"></i>
-      <input type="text" placeholder="Add Comment...">
+    </form>
+
+    <div class="ui message">
+      New to us? <a href="signup.html">Sign Up</a>
     </div>
   </div>
 </div>
+
 </div>
 
 <script type="text/javascript" src="Javascript/main.js"></script>
-
 </body>
 </html> 

@@ -70,4 +70,39 @@
 	} // DELETE
 
 
+//Login
+    const loginEmail = document.querySelector(‘.js-email-input-login’)
+    const loginPassword = document.querySelector(‘.js-password-input-login’)
+    const loginButton = document.querySelector(‘.js-login-button’)
+    // const submitLogin = document.querySelector(‘.js-login-button’)
+
+    //Sign-Up
+    const signupEmail = document.querySelector(‘.js-email-input-signup’)
+    const signupPassword = document.querySelector(‘.js-password-input-signup’)
+    const signupButton = document.querySelector(‘.js-button-signup’)
+    // const submitSignup = document.querySelector(‘.js-login-button’)
+
+   //LOGIN POST
+    submitLogin.addEventListener(‘click’, () => {
+      POST(‘/api/work’,{
+        header: header.value,
+        imageUrl: workurl.value
+      })
+    })
+
+   //Sign-Up POST
+    submitSignup.addEventListener(‘click’, () => {
+      POST(‘/api/commissioned’,{
+        folder: selector.value,
+        imageUrl: commissionedUrl.value
+      })
+    })
+  };
+
+
 	})();
+
+
+
+
+
