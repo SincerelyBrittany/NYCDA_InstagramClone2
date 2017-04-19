@@ -18,8 +18,13 @@
   </div>
    <a class="item instagrampage">
     Instagram
+<<<<<<< HEAD
+  </div>
+  <a class="item LogIn" href="index.html">
+=======
   </a>
   <a class="item LogIn" href="login.html">
+>>>>>>> origin
     Log In
   </a>
   <a class="item logout">
@@ -31,7 +36,8 @@
 <div class="wrapper">
   <div class="ui right aligned category search searchbarcss">
   <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Discover Other Users">
+    <input class="prompt js-discover-input js-discover-input-signup js-all-input" type="text" placeholder="Discover Other Users">
+     <!-- This is where the discover search bar is -->
     <i class="search icon"></i>
   </div>
   <div class="results"></div>
@@ -41,39 +47,39 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="assets/images/logo.png" class="image">
+
       <div class="content">
         Create an account
       </div>
     </h2>
+   
+
+
     <form class="ui large form">
-
-    <div class="ui stacked segment">
+      <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="FirstandLastName" placeholder="First and Last Name">
+            <input class= "js-email-input js-email-input-signup js-all-input" type="text" name="email" placeholder="E-mail address">
+            <!-- This is where the e-mail input is -->
           </div>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
-          </div>
-        </div>
-
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
+            <input class="js-password-input js-password-input-signup js-all-input" type="password" name="password" placeholder="Password">
+            <!-- This is where the password input is -->
           </div>
         </div>
-        <div class="ui fluid large teal submit button">Sign Up</div>
+        <button class="ui fluid large teal submit button js-button-signup">Sign-Up</button>
       </div>
 
       <div class="ui error message"></div>
 
     </form>
+
+
+
 
     <div class="ui message">
       Already a user? <a href="login.html">Login Here</a>
@@ -83,6 +89,6 @@
 
 </div>
 
-
+<script type="text/javascript" src="Javascript/main.js"></script>
 </body>
 </html> 
