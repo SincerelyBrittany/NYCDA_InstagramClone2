@@ -71,14 +71,15 @@
 
 
 //Login
-
+	const loginUsernameField = document.querySelector('.js-username-input-login')
 	const loginPasswordField = document.querySelector('.js-password-input-login')
-    const loginUsernameField = document.querySelector('.js-email-input-login')
+    const loginEmailField = document.querySelector('.js-email-input-login')
     const loginButton = document.querySelector('.js-login-button')
 
     //Sign-Up
+    const signupUsernameField = document.querySelector('.js-username-input-signup')
     const signupPasswordField = document.querySelector('.js-password-input-signup')
-    const signupUsernameField = document.querySelector('.js-email-input-signup')
+    const signupEmailField = document.querySelector('.js-email-input-signup')
     const signupButton = document.querySelector('.js-button-signup')
 
    //LOGIN POST
@@ -86,7 +87,8 @@ loginButton.addEventListener('click',(e) => {
 	e.preventDefault();
 	POST('/api/login', {
 		loginUsernameField:loginUsernameField.value,
-		loginPasswordField:loginPasswordField.value
+		loginPasswordField:loginPasswordField.value,
+		loginEmailField:loginEmailField.value
 	})
 })
 
@@ -94,7 +96,8 @@ signupButton.addEventListener('click',(e) => {
 	e.preventDefault();
 	POST('/api/signup', {
 		signupUsernameField:signupUsernameField.value,
-		signupPasswordField:signupPasswordField.value
+		signupPasswordField:signupPasswordField.value,
+		signupEmailField:signupEmailField.value
 	})
 })
 
