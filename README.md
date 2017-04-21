@@ -4,7 +4,13 @@ This is a group project that will replicate the core functionality of instagram 
 
 
 ## FRONT END DOCUMENTATION
-This is an example
+Created a index.html - Is the log in page
+Created a feed page - Is the feed where user will see post of people they follow
+Created profile page - This is the page where user will see personal post
+Created Sign-up page - allows new users to sign up 
+
+Front-end javascript: Updated CRUD to include login and sign up buttons.
+
 
 ## API/ROUTES DOCUMENTATION
 This is were the documentation for the api and the list for the middleware that will be utilized in this application.

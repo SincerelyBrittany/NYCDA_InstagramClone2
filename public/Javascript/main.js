@@ -51,7 +51,7 @@
 		});
 	} // POST
 
-	function DELETE(url, data) {
+	function DELETE(url, data = {}) {
 		return new Promise((resolve, reject) => {
 			const request = new XMLHttpRequest();
 			request.open('DELETE', url);
@@ -71,36 +71,38 @@
 
 
 //Login
-    const loginEmail = document.querySelector(‘.js-email-input-login’)
-    const loginPassword = document.querySelector(‘.js-password-input-login’)
-    const loginButton = document.querySelector(‘.js-login-button’)
-    // const submitLogin = document.querySelector(‘.js-login-button’)
+
+	const loginPasswordField = document.querySelector('.js-password-input-login')
+    const loginUsernameField = document.querySelector('.js-email-input-login')
+    const loginButton = document.querySelector('.js-login-button')
 
     //Sign-Up
-    const signupEmail = document.querySelector(‘.js-email-input-signup’)
-    const signupPassword = document.querySelector(‘.js-password-input-signup’)
-    const signupButton = document.querySelector(‘.js-button-signup’)
-    // const submitSignup = document.querySelector(‘.js-login-button’)
+    const signupPasswordField = document.querySelector('.js-password-input-signup')
+    const signupUsernameField = document.querySelector('.js-email-input-signup')
+    const signupButton = document.querySelector('.js-button-signup')
 
    //LOGIN POST
-    submitLogin.addEventListener(‘click’, () => {
-      POST(‘/api/work’,{
-        header: header.value,
-        imageUrl: workurl.value
-      })
-    })
+loginButton.addEventListener('click',(e) => {
+	e.preventDefault();
+	POST('/api/login', {
+		loginUsernameField:loginUsernameField.value,
+		loginPasswordField:loginPasswordField.value
+	})
+})
 
-   //Sign-Up POST
-    submitSignup.addEventListener(‘click’, () => {
-      POST(‘/api/commissioned’,{
-        folder: selector.value,
-        imageUrl: commissionedUrl.value
-      })
-    })
-  };
+signupButton.addEventListener('click',(e) => {
+	e.preventDefault();
+	POST('/api/signup', {
+		signupUsernameField:signupUsernameField.value,
+		signupPasswordField:signupPasswordField.value
+	})
+})
 
 
-	})();
+
+})();
+
+
 
 
 

@@ -21,6 +21,8 @@ const parser = require('body-parser');
  */
 const app = express();
 
+const router = require('./routes');
+
 /*
  *	implement middlewares
  */
@@ -94,15 +96,17 @@ app.post('/auth/login', (request, response, next) => {
 
 app.use('/', express.static('./public'));
 
-app.get('/api/info', passport.authenticate('local'), (request, response) => {
+// app.get('/api/info', passport.authenticate('local'), (request, response) => {
 
-	response.header('Content-Type', 'application/json');
-	response.send({
-	    "message": "Hello, Wrold!",
-	    "success": true
-	});
+// 	response.header('Content-Type', 'application/json');
+// 	response.send({
+// 	    "message": "Hello, Wrold!",
+// 	    "success": true
+// 	});
 
-});
+// });
+
+app.use('/api', router);
 
 app.listen(3000, () => {
 	console.log('LOL')
