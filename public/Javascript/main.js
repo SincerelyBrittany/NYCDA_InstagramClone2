@@ -70,36 +70,64 @@
 	} // DELETE
 
 
-//Login
+//LOGIN POST
+const loginButton = document.querySelector('.js-login-button');
+    if(loginButton !== null) {
+        loginButton.addEventListener('click', (e) => {
+            e.preventDefault();
 	const loginUsernameField = document.querySelector('.js-username-input-login')
 	const loginPasswordField = document.querySelector('.js-password-input-login')
     const loginEmailField = document.querySelector('.js-email-input-login')
-    const loginButton = document.querySelector('.js-login-button')
 
-    //Sign-Up
-    const signupUsernameField = document.querySelector('.js-username-input-signup')
+            if (!loginUsernameField || !loginPasswordField || !loginEmailField) {
+                alert('need name and password and email');
+                return;
+            }
+            console.log(loginEmailField, loginPasswordField, loginUsernameField)
+
+            POST('/api/instagram', {
+                loginUsernameField,
+                // loginEmailField,
+                loginPasswordField,
+            }).then((data) => {
+                console.log(data) 
+                if (data) {
+                    window.location.href="/feed.html"
+                    //    window.location="/feed.html"
+
+                }
+            });
+        });
+    }
+
+
+const signupButton = document.querySelector('.js-button-signup')
+    if(signupButton !== null) {
+        signupButton.addEventListener('click', (e) => {
+            e.preventDefault();
+	const signupUsernameField = document.querySelector('.js-username-input-signup')
     const signupPasswordField = document.querySelector('.js-password-input-signup')
     const signupEmailField = document.querySelector('.js-email-input-signup')
-    const signupButton = document.querySelector('.js-button-signup')
 
-   //LOGIN POST
-loginButton.addEventListener('click',(e) => {
-	e.preventDefault();
-	POST('/api/login', {
-		loginUsernameField:loginUsernameField.value,
-		loginPasswordField:loginPasswordField.value,
-		loginEmailField:loginEmailField.value
-	})
-})
+            if (!signupUsernameField || !signupPasswordField || !signupEmailField) {
+                alert('need name and password and email');
+                return;
+            }
 
-signupButton.addEventListener('click',(e) => {
-	e.preventDefault();
-	POST('/api/signup', {
-		signupUsernameField:signupUsernameField.value,
-		signupPasswordField:signupPasswordField.value,
-		signupEmailField:signupEmailField.value
-	})
-})
+            POST('/api/instagram', {
+                signupUsernameField,
+                // signupEmailField,
+                signupPasswordField,
+            }).then((data) => {
+                console.log(data) 
+                if (data) {
+                    window.location.href="/index.html"
+                    //    window.location="/feed.html"
+
+                }
+            });
+        });
+    }
 
 
 
