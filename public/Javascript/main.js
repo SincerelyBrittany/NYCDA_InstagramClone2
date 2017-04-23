@@ -71,57 +71,58 @@
 
 
 //LOGIN POST
-const loginButton = document.querySelector('.js-login-button');
-    if(loginButton !== null) {
-        loginButton.addEventListener('click', (e) => {
-            e.preventDefault();
-	const loginUsernameField = document.querySelector('.js-username-input-login')
-	const loginPasswordField = document.querySelector('.js-password-input-login')
-    const loginEmailField = document.querySelector('.js-email-input-login')
+// const loginButton = document.querySelector('.js-login-button');
+//     if(loginButton !== null) {
+//         loginButton.addEventListener('click', (e) => {
+//             e.preventDefault();
+// 	const loginUsernameField = document.querySelector('.js-username-input-login')
+// 	const loginPasswordField = document.querySelector('.js-password-input-login')
+//     const loginEmailField = document.querySelector('.js-email-input-login')
 
-            if (!loginUsernameField || !loginPasswordField || !loginEmailField) {
-                alert('need name and password and email');
-                return;
-            }
-            console.log(loginEmailField, loginPasswordField, loginUsernameField)
+//             if (!loginUsernameField || !loginPasswordField || !loginEmailField) {
+//                 alert('need name and password and email');
+//                 return;
+//             }
+//             console.log(loginEmailField, loginPasswordField, loginUsernameField)
 
-            POST('/api/instagram', {
-                loginUsernameField,
-                // loginEmailField,
-                loginPasswordField,
-            }).then((data) => {
-                console.log(data) 
-                if (data) {
-                    window.location.href="/feed.html"
-                    //    window.location="/feed.html"
+//             POST('/api/instagram', {
+//                 // loginUsernameField,
+//                 loginEmailField,
+//                 loginPasswordField,
+//             }).then((data) => {
+//                 console.log(data) 
+//                 if (data) {
+//                     window.location.href="/feed.html"
+//                     //    window.location="/feed.html"
 
-                }
-            });
-        });
-    }
+//                 }
+//             });
+//         });
+//     }
 
 
-const signupButton = document.querySelector('.js-button-signup')
+const signupButton = document.querySelector('.js-button-signup');
+console.log(signupButton)
     if(signupButton !== null) {
         signupButton.addEventListener('click', (e) => {
+
             e.preventDefault();
 	const signupUsernameField = document.querySelector('.js-username-input-signup')
     const signupPasswordField = document.querySelector('.js-password-input-signup')
     const signupEmailField = document.querySelector('.js-email-input-signup')
-
-            if (!signupUsernameField || !signupPasswordField || !signupEmailField) {
+    		
+            if (!signupUsernameField.value || !signupPasswordField.value || !signupEmailField.value) {
                 alert('need name and password and email');
                 return;
             }
-
-            POST('/api/instagram', {
-                signupUsernameField,
-                // signupEmailField,
-                signupPasswordField,
+            POST('/api/signup', {
+                Username: signupUsernameField.value,
+                Email: signupEmailField.value,
+                Pass: signupPasswordField.value,
             }).then((data) => {
                 console.log(data) 
                 if (data) {
-                    window.location.href="/index.html"
+                    // window.location.href="/index.html"
                     //    window.location="/feed.html"
 
                 }

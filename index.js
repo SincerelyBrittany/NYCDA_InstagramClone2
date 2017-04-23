@@ -3,6 +3,8 @@
  */
 
 const express = require('express');
+const db = require('sqlite');
+const DB_NAME = './database.sqlite';
  
 /*
  * pull in authorization requirements
@@ -56,7 +58,9 @@ passport.use(new LocalStrategy({
     }
 
     console.log('ABOUT TO BE DONE');
-    return done(null, {user: 'Taq'});
+    return done(console.log("Brittany is here"));
+
+    // return done(null, {user: 'Taq'});
 }));
 
 /*
@@ -68,16 +72,41 @@ app.use(passport.session());
 /*
  * login route
  */
-app.post('/auth/login', (request, response, next) => {
-	console.log('IN /auth/login');
+// app.post('/auth/login', (request, response, next) => {
+// 	console.log('IN /auth/login');
+
+//     passport.authenticate('local', (err, user, info) => {
+//     	console.log('IN passport.authenticate')
+//         if (err) console.log(err);
+//         if (!user) console.log(user);
+
+//         request.logIn(user, (err) => {
+//         	console.log('LOGGED IN')
+//             if (err) return next(err);
+//             console.log('SESSION')
+//             console.log(request.session)
+//             // if we are here, user has logged in!
+//             response.header('Content-Type', 'application/json');
+
+//             response.send({
+//                 success: true,
+//             });
+//         });
+//     })(request, response, next);
+
+// });
+
+
+app.post('/auth/signup', (request, response, next) => {
+    console.log('IN /auth/signup');
 
     passport.authenticate('local', (err, user, info) => {
-    	console.log('IN passport.authenticate')
+        console.log('IN passport.authenticate')
         if (err) console.log(err);
         if (!user) console.log(user);
 
         request.logIn(user, (err) => {
-        	console.log('LOGGED IN')
+            console.log('LOGGED IN')
             if (err) return next(err);
             console.log('SESSION')
             console.log(request.session)
@@ -89,9 +118,15 @@ app.post('/auth/login', (request, response, next) => {
             });
         });
     })(request, response, next);
-
+    
 });
 
+app.get('/view', (req,res)=>{
+    db.get('SELECT * FROM Users')
+        .then((v) => {
+            res.send(v);
+        })
+})
 
 
 app.use('/', express.static('./public'));
@@ -108,6 +143,11 @@ app.use('/', express.static('./public'));
 
 app.use('/api', router);
 
-app.listen(3000, () => {
-	console.log('LOL')
-});
+const port = 3000;
+
+Promise.resolve()
+    .then(() => db.open(DB_NAME, {Promise}))
+    .then(() => db.migrate({force: 'last'}))
+    .then(() => app.listen(port))
+    .then(() => {console.log(`Server started on port 3000`)})
+    .catch(err => console.error(err.stack))
