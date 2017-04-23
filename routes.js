@@ -9,15 +9,6 @@ const parser = require('body-parser');
 
 router.use(parser.json());
 
-router.get('/login', (request, response) => {
-
-     next();
-});
-
-router.post('/login', (request, response) => {
-     
-});
-
 router.post('/instagram', (request, response) => {
      console.log("We made it", request.body)
 

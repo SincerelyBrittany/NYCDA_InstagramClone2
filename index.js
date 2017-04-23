@@ -25,6 +25,8 @@ const app = express();
 
 const router = require('./routes');
 
+app.use('/', express.static('./public'));
+
 /*
  *	implement middlewares
  */
@@ -58,7 +60,20 @@ passport.use(new LocalStrategy({
     }
 
     console.log('ABOUT TO BE DONE');
-    return done(console.log("Brittany is here"));
+    console.log(`SELECT * FROM Users WHERE email = '${email}';`)
+    db.get(`SELECT * FROM Users WHERE email = '${email}' AND password = '${password}';`)
+        .then((data) => {
+            console.log('IN DATA', data)
+            if (!data) {
+                return done(true, null);
+            }
+            return done(false, data);
+        })
+        .catch((e) => {
+            console.log(e);
+            return done(true, null, e)
+        })
+    
 
     // return done(null, {user: 'Taq'});
 }));
@@ -73,12 +88,16 @@ app.use(passport.session());
  * login route
  */
 app.post('/auth/login', (request, response, next) => {
-	console.log('IN /auth/login');
+	console.log('IN /auth/login', request.body);
 
     passport.authenticate('local', (err, user, info) => {
-    	console.log('IN passport.authenticate')
-        if (err) console.log(err);
-        if (!user) console.log(user);
+    	console.log('IN passport.authenticate', err, user, info)
+        if (err || !user) {
+            response.status(403);
+            response.send({success: false});
+            console.log('here')
+            return;
+        }
 
         request.logIn(user, (err) => {
         	console.log('LOGGED IN')
@@ -95,6 +114,16 @@ app.post('/auth/login', (request, response, next) => {
     })(request, response, next);
 
 });
+
+app.use((request, response, next) => {
+    if (request.isAuthenticated()) {
+        next();
+    }
+    else {
+        response.status(403);
+        response.send({success: false})
+    }
+})
 
 
 // app.post('/auth/signup', (request, response, next) => {
@@ -128,8 +157,17 @@ app.get('/view', (req,res)=>{
         })
 })
 
+app.get('/current/user', (request, response) => {
+    if (request.user) {
+        response.send(request.user)
+    }
+    else {
+        response.send({})
+    }
+})
 
-app.use('/', express.static('./public'));
+
+
 
 // app.get('/api/info', passport.authenticate('local'), (request, response) => {
 
