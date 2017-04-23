@@ -72,41 +72,16 @@ app.use(passport.session());
 /*
  * login route
  */
-// app.post('/auth/login', (request, response, next) => {
-// 	console.log('IN /auth/login');
-
-//     passport.authenticate('local', (err, user, info) => {
-//     	console.log('IN passport.authenticate')
-//         if (err) console.log(err);
-//         if (!user) console.log(user);
-
-//         request.logIn(user, (err) => {
-//         	console.log('LOGGED IN')
-//             if (err) return next(err);
-//             console.log('SESSION')
-//             console.log(request.session)
-//             // if we are here, user has logged in!
-//             response.header('Content-Type', 'application/json');
-
-//             response.send({
-//                 success: true,
-//             });
-//         });
-//     })(request, response, next);
-
-// });
-
-
-app.post('/auth/signup', (request, response, next) => {
-    console.log('IN /auth/signup');
+app.post('/auth/login', (request, response, next) => {
+	console.log('IN /auth/login');
 
     passport.authenticate('local', (err, user, info) => {
-        console.log('IN passport.authenticate')
+    	console.log('IN passport.authenticate')
         if (err) console.log(err);
         if (!user) console.log(user);
 
         request.logIn(user, (err) => {
-            console.log('LOGGED IN')
+        	console.log('LOGGED IN')
             if (err) return next(err);
             console.log('SESSION')
             console.log(request.session)
@@ -118,8 +93,33 @@ app.post('/auth/signup', (request, response, next) => {
             });
         });
     })(request, response, next);
-    
+
 });
+
+
+// app.post('/auth/signup', (request, response, next) => {
+//     console.log('IN /auth/signup');
+
+//     passport.authenticate('local', (err, user, info) => {
+//         console.log('IN passport.authenticate')
+//         if (err) console.log(err);
+//         if (!user) console.log(user);
+
+//         request.logIn(user, (err) => {
+//             console.log('LOGGED IN')
+//             if (err) return next(err);
+//             console.log('SESSION')
+//             console.log(request.session)
+//             // if we are here, user has logged in!
+//             response.header('Content-Type', 'application/json');
+
+//             response.send({
+//                 success: true,
+//             });
+//         });
+//     })(request, response, next);
+    
+// });
 
 app.get('/view', (req,res)=>{
     db.get('SELECT * FROM Users')

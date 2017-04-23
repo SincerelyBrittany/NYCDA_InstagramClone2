@@ -1,0 +1,29 @@
+{
+  "name": "pwd",
+  "version": "1.0.0",
+  "description": "This is a group project that will replicate the core functionality of instagram utilizing node.js, express.js, and [insert front-end FW]. This projects members are [Lisa](https://github.com/lisa-ewart), Martin, & Brittany.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/supervisor index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SincerelyBrittany/NYCDA_Instagram_clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SincerelyBrittany/NYCDA_Instagram_clone/issues"
+  },
+  "homepage": "https://github.com/SincerelyBrittany/NYCDA_Instagram_clone#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "sqlite": "^2.5.0",
+    "supervisor": "^0.12.0"
+  }
+}

@@ -71,34 +71,34 @@
 
 
 //LOGIN POST
-// const loginButton = document.querySelector('.js-login-button');
-//     if(loginButton !== null) {
-//         loginButton.addEventListener('click', (e) => {
-//             e.preventDefault();
-// 	const loginUsernameField = document.querySelector('.js-username-input-login')
-// 	const loginPasswordField = document.querySelector('.js-password-input-login')
-//     const loginEmailField = document.querySelector('.js-email-input-login')
+const loginButton = document.querySelector('.js-login-button');
+    if(loginButton !== null) {
+        loginButton.addEventListener('click', (e) => {
+            e.preventDefault();
+	const loginUsernameField = document.querySelector('.js-username-input-login')
+	const loginPasswordField = document.querySelector('.js-password-input-login')
+    const loginEmailField = document.querySelector('.js-email-input-login')
 
-//             if (!loginUsernameField || !loginPasswordField || !loginEmailField) {
-//                 alert('need name and password and email');
-//                 return;
-//             }
-//             console.log(loginEmailField, loginPasswordField, loginUsernameField)
+            if (!loginUsernameField.value || !loginPasswordField.value || !loginEmailField.value) {
+                alert('need name and password and email');
+                return;
+            }
+            console.log(loginEmailField, loginPasswordField, loginUsernameField)
 
-//             POST('/api/instagram', {
-//                 // loginUsernameField,
-//                 loginEmailField,
-//                 loginPasswordField,
-//             }).then((data) => {
-//                 console.log(data) 
-//                 if (data) {
-//                     window.location.href="/feed.html"
-//                     //    window.location="/feed.html"
+            POST('/api/login', {
+                // loginUsernameField,
+                loginEmailField,
+                loginPasswordField,
+            }).then((data) => {
+                console.log(data) 
+                if (data) {
+                    window.location.href="/feed.html"
+                    //    window.location="/feed.html"
 
-//                 }
-//             });
-//         });
-//     }
+                }
+            });
+        });
+    }
 
 
 const signupButton = document.querySelector('.js-button-signup');
@@ -122,7 +122,7 @@ console.log(signupButton)
             }).then((data) => {
                 console.log(data) 
                 if (data) {
-                    // window.location.href="/index.html"
+                    window.location.href="/index.html"
                     //    window.location="/feed.html"
 
                 }
