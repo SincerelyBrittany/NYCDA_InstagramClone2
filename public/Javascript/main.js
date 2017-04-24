@@ -129,6 +129,46 @@ console.log(signupButton)
             });
         });
     }
+	
+	
+	//Add Feed
+	
+GET('/instagram')
+  .then((v) => {
+    const data = JSON.parse(JSON.parse(v));
+
+    const postContainer = document.querySelector('');
+
+    data.forEach((post) => {
+      const div = document.createElement('div');
+      div.classList.add('','','');
+      div.innerHTML = `
+                  <div class="">
+                      <ul class="e">
+                          <li>${post.username}</li>
+                          <li class="" >1 week</li>
+                      </ul>
+                  </div>
+                  <div class="">
+                      <img src="${post.photolink}" class="">
+                  </div>
+			
+                  <div class="">
+                      <blockquote>
+                        <p>${post.caption}</p>
+                      </blockquote>
+                  </div>
+                  <div class="panel-footer">
+                      <ul class="list-inline clearfix">
+                          <li class=""><a href=""><span class=""></span> Like</a><span>10</span></li>
+                          <li class=""><span class="">10</span><a class="" href=""><span class=""></span></a></li>
+                      </ul>
+                  </div> <!--panel footer-->
+                  `
+      postContainer.appendChild(div);
+      })
+  })
+
 
 
 
