@@ -26,12 +26,14 @@ router.get('/instagram', (request, response) => {
      console.log("We made it", request.body)
 	const args = request.body;
 
-	return db.all(`SELECT * FROM Posts;`)
-		.then(() => {
-			response.send({success: true})
-		})
-		.catch((e) => {
-			console.log(e)
+	
+		db.all('SELECT * FROM Posts')
+    			.then(v => {
+     				 // console.log(v)
+     			 return response.send(v)
+    				})
+		.catch((v) => {
+			console.log(v)
 		})
 });
 
