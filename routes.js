@@ -9,14 +9,32 @@ const parser = require('body-parser');
 
 router.use(parser.json());
 
-router.post('/instagram', (request, response) => {
+router.post('/posts', (request, response) => {
      console.log("We made it", request.body)
+	const args = request.body;
 
-	response.header('Content-Type', 'application/json');
-	response.send({
-	    "message": "Hello, Wrold!",
-	    "success": true
-	});
+	return db.run(`INSERT into Posts (post_id, user_id, photolink, caption, date_time) VALUES ('${args.postId}', '${args.userId}','${args.photo}','${args.caption}');`)
+		.then(() => {
+			response.send({success: true})
+		})
+		.catch((e) => {
+			console.log(e)
+		})
+});
+
+router.get('/instagram', (request, response) => {
+     console.log("We made it", request.body)
+	const args = request.body;
+
+	
+		db.all('SELECT * FROM Posts')
+    			.then(v => {
+     				 // console.log(v)
+     			 return response.send(v)
+    				})
+		.catch((v) => {
+			console.log(v)
+		})
 });
 
 router.post('/signup', (request, response) => {
