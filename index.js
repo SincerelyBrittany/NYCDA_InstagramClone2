@@ -5,6 +5,7 @@
 const express = require('express');
 const db = require('sqlite');
 const DB_NAME = './database.sqlite';
+const DB = require ('./DB.js');
  
 /*
  * pull in authorization requirements
@@ -86,7 +87,10 @@ app.use(passport.session());
 
 /*
  * login route
- */
+*/
+ app.use('/api', router)
+
+
 app.post('/auth/login', (request, response, next) => {
 	console.log('IN /auth/login', request.body);
 
@@ -150,6 +154,37 @@ app.use((request, response, next) => {
     
 // });
 
+//get all users for following (allows users to select others to follow)
+
+app.get('/getAllUsers', (request, response) =>{
+    console.log('in get all users');
+    DB.getAllUsers().then((users)=>{
+        response.setHeader('Content-Type', 'application/json')
+        response.send(users)
+    })
+});
+
+app.get ('/getPostFeed', (request, response) =>{
+    console.log("get post feed DB function");
+    DB.getfollowedUsers(request.user.userid)
+    .then((followedUsers)=>{
+        console.log("Following these users", followedUsers);
+        let feed = [];
+        for (let i = 0; i < followedUsers.length; i++){
+            feed.push(DB.getFeed(followedUsers[i].followed));
+        };
+        Promise.all(feed).then((feed)=>{
+            response.setHeader('Content-Type', 'application/json')
+            response.send(feed)
+        })
+    })
+});
+
+
+
+
+
+
 app.get('/view', (req,res)=>{
     db.get('SELECT * FROM Users')
         .then((v) => {
@@ -179,7 +214,7 @@ app.get('/current/user', (request, response) => {
 
 // });
 
-app.use('/api', router);
+// app.post('/api', router);
 
 const port = 3000;
 

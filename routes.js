@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('sqlite');
 const DB_NAME = './database.sqlite';
+const DB = require ('./DB.js');
 
 // const storage = require('./firebase.js');
 
@@ -39,7 +40,7 @@ router.get('/instagram', (request, response) => {
 
 router.post('/signup', (request, response) => {
 	console.log("I made it here")
-	console.log(request.body);
+	console.log("here are the goods",request.body);
 	const args = request.body;
 
 	// console.log(`INSERT INTO Users (username, email, password) VALUES (${args.Username}, ${args.Email}, ${args.Pass});`)
