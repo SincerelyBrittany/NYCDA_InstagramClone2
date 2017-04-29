@@ -8,12 +8,13 @@
 <title> Instagram </title>
 
 
-
 </head>
 
 
 
 <body>
+
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
 <nav> <div class="ui menu">
   <div class="header item">
@@ -41,10 +42,20 @@
 </br>
 
 
+<div class="ui form">
+        <input type="file" class="js-photo js-filElem" accept="image/*">
+        <button class="ui button active js-photoSelect js-fileSelect"><i class="upload icon"></i></button>
+        <div class="inline field">
+            <label>Post Description</label>
+            <input type="text" class="js-summary" placeholder="...">
+        </div>
+        <button type="submit" class="js-createPost">Create Post</button>
+    </div>
+
 
 <script type="text/javascript" src="Javascript/main.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-<script type="text/javascript" src="firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<!-- <script type="text/javascript" src="Javascript/fb.js"></script> -->
    
 
 </body>

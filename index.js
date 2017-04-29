@@ -53,25 +53,18 @@ passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
 }, (email, password, done) => {
-    console.log('in localstrategy');
-    console.log(email, password);
     if (!email || !password) {
         return done('f-ed up', {}, {});
         // done(err, user, info)
     }
-
-    console.log('ABOUT TO BE DONE');
-    console.log(`SELECT * FROM Users WHERE email = '${email}';`)
     db.get(`SELECT * FROM Users WHERE email = '${email}' AND password = '${password}';`)
         .then((data) => {
-            console.log('IN DATA', data)
             if (!data) {
                 return done(true, null);
             }
             return done(false, data);
         })
         .catch((e) => {
-            console.log(e);
             return done(true, null, e)
         })
     

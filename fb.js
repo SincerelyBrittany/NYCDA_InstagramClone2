@@ -28,14 +28,15 @@
 
 
         // Initialize Firebase
-        const config = {
-        apiKey: "AIzaSyANkdf3KcNrJ2EDGqCLn1te46zsk4cn04g",
-        authDomain: "nycda-instagram-clone.firebaseapp.com",
-        databaseURL: "https://nycda-instagram-clone.firebaseio.com",
-        projectId: "nycda-instagram-clone",
-        storageBucket: "nycda-instagram-clone.appspot.com",
-        messagingSenderId: "956508152154"
-        };
+         // Initialize Firebase
+            var config = {
+            apiKey: "AIzaSyANkdf3KcNrJ2EDGqCLn1te46zsk4cn04g",
+            authDomain: "nycda-instagram-clone.firebaseapp.com",
+            databaseURL: "https://nycda-instagram-clone.firebaseio.com",
+             projectId: "nycda-instagram-clone",
+             storageBucket: "nycda-instagram-clone.appspot.com",
+         messagingSenderId: "956508152154"
+            };
         firebase.initializeApp(config);
         // Name of file storage ref "folder"
         const FILE_STORAGE_REF = 'images';
