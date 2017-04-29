@@ -233,7 +233,7 @@ const signupButton = document.querySelector('.js-button-signup');
         });
 
 
-=======
+
 	
 	
 	//Add Feed
