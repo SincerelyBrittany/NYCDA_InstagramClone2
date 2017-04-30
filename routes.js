@@ -69,6 +69,21 @@ router.post('/signup', (request, response) => {
      
 });
 
+router.get('/instagram', (request, response) => {
+     console.log("We made it", request.body)
+    const args = request.body;
+
+    
+        db.all('SELECT * FROM Posts')
+                .then(v => {
+                     // console.log(v)
+                 return response.send(v)
+                    })
+        .catch((v) => {
+            console.log(v)
+        })
+});
+
 Promise.resolve()
     .then(() => db.open(DB_NAME, {Promise}))
     .catch(err => console.log(err.stack))
