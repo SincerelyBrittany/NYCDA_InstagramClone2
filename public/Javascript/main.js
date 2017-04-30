@@ -1,86 +1,86 @@
 (function() { // protect the lemmings
 
-	function GET(url) {
-		return new Promise((resolve, reject) => {
-			const request = new XMLHttpRequest();
-			request.open('GET', url);
-			request.onload = () => {
-				const data = JSON.parse(request.responseText);
-				resolve(data)
-			}; 
-			request.onerror = (err) => {
-				reject(err)
-			};
-			request.send();
-		});
-	} // GET
+    function GET(url) {
+        return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.open('GET', url);
+            request.onload = () => {
+                const data = JSON.parse(request.responseText);
+                resolve(data)
+            }; 
+            request.onerror = (err) => {
+                reject(err)
+            };
+            request.send();
+        });
+    } // GET
 
-	function POST(url, data) {
-		console.log(url)
-		console.log(data)
+    function POST(url, data) {
+        console.log(url)
+        console.log(data)
 
-		return new Promise((resolve, reject) => {
-			const request = new XMLHttpRequest();
-			request.open('POST', url);
-			request.setRequestHeader('Content-Type', 'application/json');
+        return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.open('POST', url);
+            request.setRequestHeader('Content-Type', 'application/json');
 
-			request.onload = () => {
-				const data = JSON.parse(request.responseText);
-				resolve(data)
-			}; 
-			request.onerror = (err) => {
-				reject(err)
-			};
+            request.onload = () => {
+                const data = JSON.parse(request.responseText);
+                resolve(data)
+            }; 
+            request.onerror = (err) => {
+                reject(err)
+            };
 
-			request.send(JSON.stringify(data));
-		});
-	} // POST
+            request.send(JSON.stringify(data));
+        });
+    } // POST
 
-	function PUT(url, data) {
-		return new Promise((resolve, reject) => {
-			const request = new XMLHttpRequest();
-			request.open('PUT', url);
-			request.setRequestHeader('Content-Type', 'application/json');
+    function PUT(url, data) {
+        return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.open('PUT', url);
+            request.setRequestHeader('Content-Type', 'application/json');
 
-			request.onload = () => {
-				const data = JSON.parse(request.responseText);
-				resolve(data)
-			}; 
-			request.onerror = (err) => {
-				reject(err)
-			};
+            request.onload = () => {
+                const data = JSON.parse(request.responseText);
+                resolve(data)
+            }; 
+            request.onerror = (err) => {
+                reject(err)
+            };
 
-			request.send(JSON.stringify(data));
-		});
-	} // POST
+            request.send(JSON.stringify(data));
+        });
+    } // POST
 
-	function DELETE(url, data = {}) {
-		return new Promise((resolve, reject) => {
-			const request = new XMLHttpRequest();
-			request.open('DELETE', url);
-			request.setRequestHeader('Content-Type', 'application/json');
+    function DELETE(url, data = {}) {
+        return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.open('DELETE', url);
+            request.setRequestHeader('Content-Type', 'application/json');
 
-			request.onload = () => {
-				const data = JSON.parse(request.responseText);
-				resolve(data)
-			}; 
-			request.onerror = (err) => {
-				reject(err)
-			};
+            request.onload = () => {
+                const data = JSON.parse(request.responseText);
+                resolve(data)
+            }; 
+            request.onerror = (err) => {
+                reject(err)
+            };
 
-			request.send(JSON.stringify(data));
-		});
-	} // DELETE
+            request.send(JSON.stringify(data));
+        });
+    } // DELETE
 
 
 //LOGIN POST
-const loginButton = document.querySelector('.js-login-button');
+const form = document.querySelector('.form');
 
 
-    if(loginButton !== null) {
-        loginButton.addEventListener('click', (e) => {
+    if(form !== null) {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-	const loginPasswordField = document.querySelector('.js-password-input-login')
+    const loginPasswordField = document.querySelector('.js-password-input-login')
     const loginEmailField = document.querySelector('.js-email-input-login')
 
             if (!loginPasswordField.value || !loginEmailField.value) {
@@ -89,14 +89,20 @@ const loginButton = document.querySelector('.js-login-button');
             }
             console.log(loginEmailField, loginPasswordField)
 
+
+            console.log("About to login in")
+            const username = loginEmailField.value;
+            const password = loginPasswordField.value
+
             POST('/api/login', {
                 // loginUsernameField,
-                loginEmailField,
-                loginPasswordField,
-            }).then((data) => {
-                console.log(data) 
-                if (data) {
-                    window.location.href="/feed.html"
+                username,
+                password,
+            })
+            .then((data) => {
+                console.log('>>>>>',data) 
+                if (data.success) {
+                    window.location.href="./feed.html"
                     //    window.location="/feed.html"
 
                 }
@@ -111,10 +117,10 @@ const signupButton = document.querySelector('.js-button-signup');
         signupButton.addEventListener('click', (e) => {
             e.preventDefault();
 
-			const signupUsernameField = document.querySelector('.js-username-input-signup')
-		    const signupPasswordField = document.querySelector('.js-password-input-signup')
-		    const signupEmailField = document.querySelector('.js-email-input-signup')
-    		
+            const signupUsernameField = document.querySelector('.js-username-input-signup')
+            const signupPasswordField = document.querySelector('.js-password-input-signup')
+            const signupEmailField = document.querySelector('.js-email-input-signup')
+            
             if (!signupUsernameField.value || !signupPasswordField.value || !signupEmailField.value) {
                 alert('need name and password and email');
                 return;
@@ -125,12 +131,13 @@ const signupButton = document.querySelector('.js-button-signup');
                 Email: signupEmailField.value,
                 Pass: signupPasswordField.value,
             }).then((data) => {
-                console.log(data) 
-                // if (data) {
-                //     window.location.href="/index.html"
-                //     //    window.location="/feed.html"
+                console.log(data)
 
-                // }
+                if (data.success) {
+                    window.location.href="/index.html"
+                    //    window.location="/feed.html"
+
+                }
             });
         });
     }
@@ -210,6 +217,7 @@ const signupButton = document.querySelector('.js-button-signup');
 
     }
 
+<<<<<<< HEAD
     const createPost = () => {
 
     	const postSummary = document.querySelector('.js-summary');
@@ -273,17 +281,71 @@ GET('/instagram')
       postContainer.appendChild(div);
       })
   })
+=======
+    // const createPost = () => {
+
+    //     const postSummary = document.querySelector('.js-summary');
+    //     console.log(typeof postSummary);
+    //     postSummary.setAttribute('disabled', 'disabled');
+    //     console.log('made it past setAttribute');
+    //         // POST('/api/' + userId + '/post', {
+    //         //     descr: postSummary.value,
+    //         //     image_url: imageURL
+    //         // }).then((data) => {
+    //         //     // console.log(data)
+    //         //     postSummary.removeAttribute('disabled');
+    //         //     postSummary.value = '';
+    //         // });
+
+
+    // }
+    //     document.querySelector('.js-createPost').addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         createPost();
+    //     });
+
+    
+    
+    //Add Feed
+    
+// GET('/instagram')
+//   .then((v) => {
+//     const data = JSON.parse(JSON.parse(v));
+
+//     const postContainer = document.querySelector('');
+
+//     data.forEach((post) => {
+//       const div = document.createElement('div');
+//       div.classList.add('','','');
+//       div.innerHTML = `
+//                   <div class="">
+//                       <ul class="e">
+//                           <li>${post.username}</li>
+//                           <li class="" >1 week</li>
+//                       </ul>
+//                   </div>
+//                   <div class="">
+//                       <img src="${post.photolink}" class="">
+//                   </div>
+            
+//                   <div class="">
+//                       <blockquote>
+//                         <p>${post.caption}</p>
+//                       </blockquote>
+//                   </div>
+//                   <div class="panel-footer">
+//                       <ul class="list-inline clearfix">
+//                           <li class=""><a href=""><span class=""></span> Like</a><span>10</span></li>
+//                           <li class=""><span class="">10</span><a class="" href=""><span class=""></span></a></li>
+//                       </ul>
+//                   </div> <!--panel footer-->
+//                   `
+//       postContainer.appendChild(div);
+//       })
+//   })
+>>>>>>> 3bdb8dc8d6ab76b263a19c44b9c9c5b207e8f277
 
 
 
 
 })();
-
-
-
-
-
-
-
-
-
