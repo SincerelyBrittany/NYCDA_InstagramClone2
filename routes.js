@@ -74,7 +74,16 @@ router.get('/instagram', (request, response) => {
     const args = request.body;
 
     
-        db.all('SELECT username FROM Users JOIN Posts')
+        db.all(`SELECT
+                    Users.username AS username,
+                    Users.profile_photo AS profile_photo,
+                    Posts.photolink AS photolink,
+                    Posts.caption AS caption,
+                    Posts.date_time
+                FROM users
+                    INNER JOIN Following ON Following.following_id = Users.id
+                    INNER JOIN Posts ON Posts.user_id = Users.id
+                WHERE Following.user_id = ${args.user_id}`)
                 .then(v => {
                      // console.log(v)
                  return response.send(v)
