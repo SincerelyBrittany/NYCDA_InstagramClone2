@@ -74,7 +74,25 @@ router.get('/instagram', (request, response) => {
     const args = request.body;
 
     
-        db.all('SELECT * FROM Posts')
+        db.all('SELECT username FROM Users JOIN Posts')
+                .then(v => {
+                     // console.log(v)
+                 return response.send(v)
+                    })
+        .catch((v) => {
+            console.log(v)
+        })
+
+});
+
+router.get('/profile', (request, response) => {
+     console.log("We made it", request.body)
+    const args = request.body;
+
+    
+        db.all(`SELECT id, username, profile_photo 
+            FROM Users 
+            WHERE email IS '${args.Email}'`)
                 .then(v => {
                      // console.log(v)
                  return response.send(v)
@@ -83,6 +101,15 @@ router.get('/instagram', (request, response) => {
             console.log(v)
         })
 });
+
+Promise.resolve()
+    .then(() => db.open(DB_NAME, {Promise}))
+    .catch(err => console.log(err.stack))
+
+
+
+module.exports = router
+
 
 Promise.resolve()
     .then(() => db.open(DB_NAME, {Promise}))
