@@ -345,6 +345,56 @@
                   <div class="content">
                             <div class="right floated meta js-time-posted">14h</div>
                             <!-- This is where the time is for when a post was posted -->
+                            <img class="ui avatar image js-user-avatar" src="${post.profile_photo}" alt="Smiley face">
+                            <!-- This is the users personal avatar photo -->
+                            <span class="js-username">${post.username}</span>
+                            <!-- This is where the username should be -->
+                            <div class="js-uploaded-instagram-photo">
+                                <img class="uploadedphoto" src="${post.photolink}" alt="Smiley face" height="280" width="250">
+                                <div>
+                                    <span class="js-username">${post.username}</span>
+                                    <!-- This is where the username should be -->
+                                    <div class="js-photo-description"> ${post.caption}</div>
+                                    <!-- THis is where the photo description should be -->
+                                </div>
+                            </div>
+                            <div class="content">
+                                <span class="right floated">
+                                  <button class= "js-button-likes"> <i class="heart outline like icon"></i>17 likes</button>
+                                  <!-- This is where the button likes are -->
+                                </span>
+                                <i class="comment icon"></i> 3 comments
+                            </div>
+                            <div class="extra content">
+                                <div class="ui large transparent left icon input">
+                                    <i class="heart outline icon"></i>
+                                    <input type="text" placeholder="Add Comment...">
+                                </div>
+                            </div>
+                        </div>
+                  `
+                    postContainer.appendChild(div);
+                })
+            })
+    }
+
+
+
+
+    function profilePage() {
+
+        GET('/api/profile')
+            .then((data) => {
+                // const data = JSON.parse(JSON.parse(v));
+                console.log('made it here', data);
+                const postContainer = document.querySelector('.js-results');
+
+                data.forEach((post) => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                  <div class="content">
+                            <div class="right floated meta js-time-posted">14h</div>
+                            <!-- This is where the time is for when a post was posted -->
                             <img class="ui avatar image js-user-avatar" src="https://www.themarysue.com/wp-content/uploads/2015/12/avatar.jpeg" alt="Smiley face">
                             <!-- This is the users personal avatar photo -->
                             <span class="js-username">${post.username}</span>
@@ -377,6 +427,5 @@
                 })
             })
     }
-
 
 })();
